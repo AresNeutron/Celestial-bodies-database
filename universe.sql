@@ -122,9 +122,9 @@ ALTER SEQUENCE public.galaxy_galaxy_id_seq OWNED BY public.galaxy.galaxy_id;
 CREATE TABLE public.moon (
     moon_id integer NOT NULL,
     name character varying(50) NOT NULL,
-    is_spherical boolean,
     description text,
-    planet_id integer
+    planet_id integer,
+    is_spherical boolean DEFAULT true
 );
 
 
@@ -286,18 +286,56 @@ INSERT INTO public.galaxy VALUES (6, 'Galaxia del Sombrero', 9.90, false, false)
 -- Data for Name: moon; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.moon VALUES (1, 'Luna', 'La Luna es el satélite natural de la Tierra.', 3, true);
+INSERT INTO public.moon VALUES (2, 'Europa', 'Europa es una de las lunas galileanas de Júpiter, conocida por su superficie helada.', 5, true);
+INSERT INTO public.moon VALUES (3, 'Titán', 'Titán es la luna más grande de Saturno y tiene una atmósfera densa.', 6, true);
+INSERT INTO public.moon VALUES (4, 'Titania', 'Titania es una luna de Urano y la segunda luna más grande del planeta.', 7, true);
+INSERT INTO public.moon VALUES (5, 'Tritón', 'Tritón es la mayor luna de Neptuno y tiene características geológicas únicas.', 8, true);
+INSERT INTO public.moon VALUES (6, 'Caronte', 'Caronte es la luna más grande de Plutón y forma un sistema binario con el planeta enano.', 9, true);
+INSERT INTO public.moon VALUES (7, 'Hoapalea', 'Hoapalea es una luna hipotética y ficticia asociada a Kepler-452b.', 10, true);
+INSERT INTO public.moon VALUES (8, 'Hades', 'Hades es una luna imaginaria vinculada a HD 209458 b.', 11, true);
+INSERT INTO public.moon VALUES (9, 'Trappiko', 'Trappiko es una luna ficticia relacionada con TRAPPIST-1e.', 12, true);
+INSERT INTO public.moon VALUES (10, 'Phobos', 'Phobos es una luna de Marte con forma irregular y superficie craterizada.', 4, true);
+INSERT INTO public.moon VALUES (11, 'Ganímedes', 'Ganímedes es la luna más grande de Júpiter y del sistema solar.', 5, true);
+INSERT INTO public.moon VALUES (12, 'Pan', 'Pan es una pequeña luna pastora de los anillos de Saturno.', 6, true);
+INSERT INTO public.moon VALUES (13, 'Oberon', 'Oberon es una de las lunas de Urano y una de las más grandes.', 7, true);
+INSERT INTO public.moon VALUES (14, 'Proteo', 'Proteo es una luna de Neptuno con forma irregular y cráteres grandes.', 8, true);
+INSERT INTO public.moon VALUES (15, 'Nix', 'Nix es una de las lunas de Plutón y forma parte del sistema binario con Caronte.', 9, true);
+INSERT INTO public.moon VALUES (16, 'Blanco', 'Blanco es una luna ficticia relacionada con Kepler-452b.', 10, true);
+INSERT INTO public.moon VALUES (17, 'Marion', 'Marion es una luna imaginaria vinculada a HD 209458 b.', 11, true);
+INSERT INTO public.moon VALUES (18, 'Talos', 'Talos es una luna ficticia en relación con TRAPPIST-1e.', 12, true);
+INSERT INTO public.moon VALUES (19, 'Deimos', 'Deimos es una luna marciana pequeña y tiene una órbita cercana a Marte.', 4, true);
+INSERT INTO public.moon VALUES (20, 'Calisto', 'Calisto es una luna de Júpiter con una antigua superficie llena de cráteres.', 5, true);
 
 
 --
 -- Data for Name: planet; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.planet VALUES (1, 'Mercurio', 48, 1, 'El planeta mas cercano al sol');
+INSERT INTO public.planet VALUES (2, 'Venus', 261, 1, 'El mas caliente del sistema');
+INSERT INTO public.planet VALUES (3, 'Tierra', 0, 2, 'Nuestro planeta');
+INSERT INTO public.planet VALUES (4, 'Marte', 140, 2, 'El nombre del Dios de la Guerra');
+INSERT INTO public.planet VALUES (5, 'Júpiter', 365, 5, 'Júpiter es el planeta más grande del sistema solar con una gran mancha roja en su atmósfera.');
+INSERT INTO public.planet VALUES (6, 'Saturno', 746, 6, 'Saturno es conocido por sus icónicos anillos compuestos por fragmentos de hielo y roca.');
+INSERT INTO public.planet VALUES (7, 'Urano', 1635, 1, 'Urano es un planeta inclinado, girando de lado en comparación con otros planetas.');
+INSERT INTO public.planet VALUES (8, 'Neptuno', 2756, 3, 'Neptuno es un planeta gaseoso con vientos extremadamente rápidos y una luna llamada Tritón.');
+INSERT INTO public.planet VALUES (9, 'Plutón', 4670, 2, 'Plutón es un planeta enano con una superficie helada y un corazón definido en su superficie.');
+INSERT INTO public.planet VALUES (10, 'Kepler-452b', 1400, 4, 'Kepler-452b es un exoplaneta descubierto por el telescopio Kepler, considerado un "primo" de la Tierra.');
+INSERT INTO public.planet VALUES (11, 'HD 209458 b', 153, 5, 'HD 209458 b, llamado "Osiris", es un exoplaneta conocido por su atmósfera evaporándose debido a la radiación.');
+INSERT INTO public.planet VALUES (12, 'TRAPPIST-1e', 39, 6, 'TRAPPIST-1e es uno de los siete planetas que orbitan alrededor de la estrella enana fría TRAPPIST-1.');
 
 
 --
 -- Data for Name: star; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+INSERT INTO public.star VALUES (1, 1, 'Sol', 4.60, 1);
+INSERT INTO public.star VALUES (2, 2, 'Sirio', 20.00, 8);
+INSERT INTO public.star VALUES (3, 3, 'Vega', 45.00, 25);
+INSERT INTO public.star VALUES (4, 4, 'Arturo', 7.10, 37);
+INSERT INTO public.star VALUES (5, 5, 'Rigel', 9.00, 860);
+INSERT INTO public.star VALUES (6, 6, 'Antares', 10.00, 550);
 
 
 --
@@ -318,21 +356,21 @@ SELECT pg_catalog.setval('public.galaxy_galaxy_id_seq', 6, true);
 -- Name: moon_moon_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.moon_moon_id_seq', 1, false);
+SELECT pg_catalog.setval('public.moon_moon_id_seq', 20, true);
 
 
 --
 -- Name: planet_planet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.planet_planet_id_seq', 1, false);
+SELECT pg_catalog.setval('public.planet_planet_id_seq', 12, true);
 
 
 --
 -- Name: star_star_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
+SELECT pg_catalog.setval('public.star_star_id_seq', 6, true);
 
 
 --
